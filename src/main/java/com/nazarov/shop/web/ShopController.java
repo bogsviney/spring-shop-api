@@ -5,9 +5,7 @@ import com.nazarov.shop.service.ProductServiceImplementation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,12 +21,20 @@ public class ShopController {
     private final ProductServiceImplementation productServiceImplementation;
 
     @GetMapping
-    public List <Product> findAAll() {
+    public List<Product> findAAll() {
         List<Product> products = productServiceImplementation.findAll();
         logger.info("products size{}", products.size());
-        logger.debug("products {}", products); // почему не вижу в логе?((
+        logger.info("products {}", products);
 
         return products;
+    }
+
+
+    @PostMapping
+    public void addProducts(@RequestBody Product product){
+        logger.info("add products {}", product);
+        productServiceImplementation.addProduct(product);
+
     }
 
 }

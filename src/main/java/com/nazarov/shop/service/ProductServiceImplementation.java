@@ -17,4 +17,8 @@ public class ProductServiceImplementation implements ProductService {
     public List<Product> findAll() {
         return productRepository.findAll();
     }
+
+    public void addProduct(Product product) {
+        productRepository.addProduct(product);
+    }
 }
